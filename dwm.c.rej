@@ -1,0 +1,19 @@
+--- dwm.c
++++ dwm.c
+@@ -828,6 +829,7 @@ focusmon(const Arg *arg)
+ 	unfocus(selmon->sel, 0);
+ 	selmon = m;
+ 	focus(NULL);
++	warp(selmon->sel);
+ }
+ 
+ void
+@@ -1368,6 +1370,8 @@ restack(Monitor *m)
+ 	}
+ 	XSync(dpy, False);
+ 	while (XCheckMaskEvent(dpy, EnterWindowMask, &ev));
++	if (m == selmon && (m->tagset[m->seltags] & m->sel->tags) && m->lt[m->sellt]->arrange != &monocle)
++		warp(m->sel);
+ }
+ 
+ void

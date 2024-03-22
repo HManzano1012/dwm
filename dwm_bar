@@ -1,0 +1,101 @@
+#!/usr/bin/bash
+
+interval=0
+## Cpu Info
+cpu_info() {
+	cpu_load=$(grep -o "^[^ ]*" /proc/loadavg)
+
+	printf "^c#E4B82E^  ^c#6c7086^ $cpu_load  |"
+}
+
+## Memory
+memory() {
+	printf "^c#4DAAB6^   ^c#6c7086^$(free -h | awk '/^Mem/ { print $3 }' | sed s/i//g)  |"
+}
+
+## Wi-fi
+wlan() {
+  ssid_name=$(iwgetid -r)
+	case "$(cat /sys/class/net/w*/operstate 2>/dev/null)" in
+		up) printf "^c#7aa2f7^ 󰤨 ^c#ffffff^ ^d^%s" "${ssid_name}  |" ;;
+		down) printf "^c#E06C75^ 󰤭 ^c#ffffff^ ^d^%s" "Disconnected  |" ;;
+	esac
+}
+
+## Time
+clock() {
+	printf "^c#a3be8c^ 󰥔 "
+	printf "^c#6c7086^ $(date '+%a, %I:%M %p') "
+}
+
+## System Update
+updates() {
+	updates=$(checkupdates | wc -l)
+
+	if [ -z "$updates" ]; then
+		printf "^c#98C379^  Updated"
+	else
+		printf "^c#98C379^  $updates"" updates"
+	fi
+}
+
+## Battery Info
+battery() {
+	BAT=$(upower -i `upower -e | grep 'BAT'` | grep 'percentage' | cut -d':' -f2 | tr -d '%,[:blank:]')
+	AC=$(upower -i `upower -e | grep 'BAT'` | grep 'state' | cut -d':' -f2 | tr -d '[:blank:]')
+
+	if [[ "$AC" == "charging" ]]; then
+		printf "^c#b05f69^   ^c#6c7086^$BAT%%  |"
+	elif [[ "$AC" == "fully-charged" ]]; then
+		printf "^c#b05f69^  ^c#6c7086^ Full  |"
+	else
+		if [[ ("$BAT" -ge "0") && ("$BAT" -le "20") ]]; then
+			printf "^c#b05f69^   ^c#6c7086^$BAT%%  |"
+		elif [[ ("$BAT" -ge "20") && ("$BAT" -le "40") ]]; then
+			printf "^c#b05f69^   ^c#6c7086^$BAT%%  |"
+		elif [[ ("$BAT" -ge "40") && ("$BAT" -le "60") ]]; then
+			printf "^c#b05f69^   ^c#6c7086^$BAT%%  |"
+		elif [[ ("$BAT" -ge "60") && ("$BAT" -le "80") ]]; then
+			printf "^c#b05f69^   ^c#6c7086^$BAT%%  |"
+		elif [[ ("$BAT" -ge "80") && ("$BAT" -le "100") ]]; then
+			printf "^c#b05f69^   ^c#6c7086^$BAT%%  |"
+		fi
+	fi
+}
+
+## Brightness
+brightness() {
+	LIGHT=$(printf "%.0f\n" `light -G`)
+
+	if [[ ("$LIGHT" -ge "0") && ("$LIGHT" -le "25") ]]; then
+		printf "^c#56B6C2^ ^c#6c7086^ $LIGHT%%"
+	elif [[ ("$LIGHT" -ge "25") && ("$LIGHT" -le "50") ]]; then
+		printf "^c#56B6C2^ ^c#6c7086^ $LIGHT%%"
+	elif [[ ("$LIGHT" -ge "50") && ("$LIGHT" -le "75") ]]; then
+		printf "^c#56B6C2^ ^c#6c7086^ $LIGHT%%"
+	elif [[ ("$LIGHT" -ge "75") && ("$LIGHT" -le "100") ]]; then
+		printf "^c#56B6C2^ ^c#6c7086^ $LIGHT%%"
+	fi
+}
+
+## Player Info
+player_info() {
+	ARTIST=$(playerctl --ignore-player=firefox --ignore-player=brave metadata xesam:artist)
+	TITLE=$(playerctl --ignore-player=firefox --ignore-player=brave metadata xesam:title)
+	STATUS=$(playerctl --ignore-player=firefox --ignore-player=brave status)
+
+	case "$STATUS" in
+		Playing) printf " ^c#7aa2f7^  ^c#6c7086^ $ARTIST - $TITLE  |" ;;
+		Paused) printf " ^c#E06C75^  ^c#6c7086^ Paused  |" ;;
+	esac
+}
+
+while true; do
+  [ "$interval" == 0 ] || [ $(("$interval" % 3600)) == 0 ] && updates=$(updates)
+  interval=$((interval + 1))
+
+  sleep 1 && xsetroot -name "$(player_info) $(battery) $(cpu_info) $(memory) $(wlan) $(clock)"
+  # sleep 1 && xsetroot -name "$(player_info) $(battery) $(cpu_info) $(memory) $(wlan) $(clock)"
+done
+
+
