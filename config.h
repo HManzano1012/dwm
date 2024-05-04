@@ -1,9 +1,10 @@
-/* See LICENSE file for copyright and license details. */
+
 /* Copyright (C) 2020-2024 Aditya Shakya <adi1090x@gmail.com>
  * 
  * DWM Configuration for Archcraft
  * Patched By : siduck76 <https://github.com/siduck76>
  * 
+ * -->
  * */
 
 /* ******************** Configurations ******************** */
@@ -33,7 +34,7 @@ static const int scalepreview       		= 4;
 static       int tag_preview      			= 1;	/* 1 means enable, 0 is off */
 
 /* ******************** Fonts ******************** */
-static const char *fonts[]          		= { "JetBrainsMono Nerd Font:size=10" };
+static const char *fonts[]          		= { "Iosevka NF:size=11.5" };
 static const char dmenufont[]       		= "monospace:size=10";
 static const int colorfultag        		= 1;  /* 0 means use SchemeSel for selected non vacant tag */
 
@@ -61,7 +62,7 @@ static const char *colors[][3]  = {
 };
 
 /* ******************** Tags/Workspaces ******************** */
-static char *tags[] = {"", "", "", "", ""};
+static char *tags[] = {" "," ", " ",  " "," "};
 
 static const int tagschemes[] = { SchemeTag1, SchemeTag2, SchemeTag3,
                                   SchemeTag4, SchemeTag5, SchemeTag6,
@@ -142,7 +143,7 @@ static char dmenumon[2] 				= "0"; /* component of dmenucmd, manipulated in spaw
 static const char *dmenucmd[]  			= { "dmenu", NULL };
 
 /* Launch Apps */
-static const char *stcmd[]  			= { "wezterm", NULL };
+static const char *stcmd[]  			= { "kitty", NULL };
 static const char *termcmd[]  			= { "/usr/share/archcraft/dwm/scripts/dwm_term", NULL };
 static const char *floatterm[]  		= { "/usr/share/archcraft/dwm/scripts/dwm_term", "--float", NULL };
 static const char *fullterm[]  			= { "/usr/share/archcraft/dwm/scripts/dwm_term", "--full", NULL };
@@ -294,8 +295,8 @@ static Key keys[] = {
 
 	/* Misc */
     { MODKEY|ShiftMask, 		XK_b, 						togglebar, {0} }, // Toggle bar
-    { MODKEY, 					XK_Tab, 					zoom, {0} }, // Switch to master
-    { ALTKEY, 					XK_Tab, 					view, {0} }, // Switch to last tag
+    // { MODKEY, 					XK_Tab, 					zoom, {0} }, // Switch to master
+    // { ALTKEY, 					XK_Tab, 					view, {0} }, // Switch to last tag
     { MODKEY, 					XK_d, 						hidewin, {0} }, // Hide window
     { MODKEY|ShiftMask, 		XK_d, 						restorewin, {0} }, // Restore window
     { MODKEY, 					XK_0, 						view, {.ui = ~0 } },
