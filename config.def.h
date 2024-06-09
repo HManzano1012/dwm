@@ -87,7 +87,7 @@ static const Rule rules[] = {
 	{ "Viewnior",  			NULL,       NULL,       0,       	  1,           1,           -1 },
 	{ "MPlayer",  			NULL,       NULL,       0,       	  1,           1,           -1 },
 	{ "Pcmanfm",  			NULL,       NULL,       0,       	  1,           1,           -1 },
-	{ "Music",  			NULL,       NULL,       0,       	  1,           1,           -1 },
+	{ "Music",  			NULL,       NULL,       0,       	  1,           0,           -1 },
 	{ "Yad",  				NULL,       NULL,       0,       	  1,           1,           -1 },
 	{ "feh",  				NULL,       NULL,       0,       	  1,           1,           -1 },
 	{ "Pavucontrol",  		NULL,       NULL,       0,       	  1,           1,           -1 },

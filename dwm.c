@@ -1929,7 +1929,7 @@ void layoutmenu(const Arg *arg) {
   char c[3], *s;
   int i;
 
-  if (!(p = popen(layoutswitcher, "r")))
+  if (!(p = popen(*layoutswitcher, "r")))
     return;
   s = fgets(c, sizeof(c), p);
   pclose(p);
