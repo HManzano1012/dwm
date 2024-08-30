@@ -8,8 +8,8 @@
  * */
 
 /* ******************** Configurations ******************** */
-static const unsigned int borderpx  		= 1;	/* border pixel of windows */
-static const unsigned int default_border 	= 1;	// to switch back to default border after dynamic border resizing via keybinds
+static const unsigned int borderpx  		= 2;	/* border pixel of windows */
+static const unsigned int default_border 	= 2;	// to switch back to default border after dynamic border resizing via keybinds
 static const unsigned int snap      		= 32;	/* snap pixel */
 static const unsigned int gappih    		= 5;	/* horiz inner gap between windows */
 static const unsigned int gappiv    		= 5;	/* vert inner gap between windows */
@@ -84,14 +84,14 @@ static const Rule rules[] = {
 	{ "Gimp",     			NULL,       NULL,       0,            0,            0,           -1 },
 	{ "Inkscape",     		NULL,       NULL,       0,            0,           0,           -1 },
 	{ "Firefox",  			NULL,       NULL,       1 << 8,       0,           0,           -1 },
-	{ "Viewnior",  			NULL,       NULL,       0,       	  1,           1,           -1 },
-	{ "MPlayer",  			NULL,       NULL,       0,       	  1,           1,           -1 },
-	{ "Pcmanfm",  			NULL,       NULL,       0,       	  1,           1,           -1 },
+	{ "Viewnior",  			NULL,       NULL,       0,       	  1,           0,           -1 },
+	{ "MPlayer",  			NULL,       NULL,       0,       	  1,           0,           -1 },
+	{ "Pcmanfm",  			NULL,       NULL,       0,       	  1,           0,           -1 },
 	{ "Music",  			NULL,       NULL,       0,       	  1,           0,           -1 },
-	{ "Yad",  				NULL,       NULL,       0,       	  1,           1,           -1 },
-	{ "feh",  				NULL,       NULL,       0,       	  1,           1,           -1 },
-	{ "Pavucontrol",  		NULL,       NULL,       0,       	  1,           1,           -1 },
-	{ "Lxappearance",  		NULL,       NULL,       0,       	  1,           1,           -1 },
+	{ "Yad",  				NULL,       NULL,       0,       	  1,           0,           -1 },
+	{ "feh",  				NULL,       NULL,       0,       	  1,          0,           -1 },
+	{ "Pavucontrol",  		NULL,       NULL,       0,       	  1,           0,           -1 },
+	{ "Lxappearance",  		NULL,       NULL,       0,       	  1,           0,           -1 },
 	{ "alacritty-float",  	NULL,       NULL,       0,       	  1,           1,           -1 },
 	{ "VirtualBox Manager",  			NULL,       NULL,       0,       	  1,           1,           -1 },
 	{ "Nm-connection-editor",  			NULL,       NULL,       0,       	  1,           1,           -1 },
